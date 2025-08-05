@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sharif Chatbot</title>
@@ -21,7 +20,6 @@
             align-items: center;
         }
         
-        }
         .chat-container {
             width: 350px;
             height: 550px;
@@ -216,9 +214,7 @@
         
         <div class="chat-messages" id="chatMessages">
             <div class="message bot-message initial-message" id="initialMessage">
-              <div ><h3>Hi there,</h3><div>
-<div>Feel free to think of me as the real Sharif. If you have any questions about him, I'm here to answer them for you.</div>
-<div>You can call me Sharif — “you” or “tumi,” whichever feels right to you.</div>
+                Hello! I'm Sharif's assistant. You can call me Sharif, you or tumi.
             </div>
         </div>
         
@@ -255,51 +251,51 @@
             // Predefined questions and answers about Sharif
             const qaPairs = [
                 {
-                    keywords: ["name", "who", "???", "????? ??? ??"],
+                    keywords: ["name", "who", "নাম", "তোমার নাম কি"],
                     answer: "My name is Sharif. I'm glad to meet you!"
                 },
                  {
-                    keywords: ["name", "hi", "???", "????? ??? ??"],
+                    keywords: ["name", "hi", "নাম", "তোমার নাম কি"],
                     answer: "My name is Sharif. I'm glad to meet you!"
                 },
                 {
-                    keywords: ["occupation", "job", "work", "????", "?? ????"],
+                    keywords: ["occupation", "job", "work", "পেশা", "কি করেন"],
                     answer: "I work as a software developer. I love creating innovative solutions."
                 },
                  {
-                    keywords: ["occupation", "class", "work", "????", "kon class e poro ???? ??? ?????? ????? ?? ????"],
-                    answer: "??? ??? ?????? ??????? ????? ? ?????"
+                    keywords: ["occupation", "class", "work", "পেশা", "kon class e poro তুমি কোন ক্লাসে পড়ো? কি করেন"],
+                    answer: "আমি এখন ইন্টার ফার্স্ট ইয়ার এ পড়ি।"
                 },
                 {
-                    keywords: ["location", "live", "where", "?????", "?????"],
+                    keywords: ["location", "live", "where", "থাকেন", "কোথায়"],
                     answer: "I live in Dhaka, Bangladesh. It's a vibrant city with lots of opportunities."
                 },
                 {
-                    keywords: ["hobbies", "interest", "??", "?????"],
+                    keywords: ["hobbies", "interest", "শখ", "আগ্রহ"],
                     answer: "I enjoy coding, reading tech blogs, and playing cricket in my free time."
                 },
                 {
-                    keywords: ["education", "study", "???????", "??????"],
+                    keywords: ["education", "study", "পড়াশোনা", "শিক্ষা"],
                     answer: "I have a degree in Computer Science from the University of Dhaka."
                 },
                 {
-                    keywords: ["contact", "email", "reach", "???????", "?????"],
+                    keywords: ["contact", "email", "reach", "যোগাযোগ", "ইমেইল"],
                     answer: "You can contact me at sharif@example.com. I'd love to hear from you!"
                 },
                 {
-                    keywords: ["experience", "work history", "????????", "????? ????????"],
+                    keywords: ["experience", "work history", "অভিজ্ঞতা", "কাজের অভিজ্ঞতা"],
                     answer: "I have 1 years of experience in web development, specializing in JavaScript frameworks."
                 },
                 {
-                    keywords: ["skills", "expertise", "??????", "????"],
+                    keywords: ["skills", "expertise", "দক্ষতা", "দক্ষ"],
                     answer: "My main skills include JavaScript, React, Node.js, and Python. I'm also good at problem-solving."
                 },
                 {
-                    keywords: ["projects", "portfolio", "????????", "???"],
+                    keywords: ["projects", "portfolio", "প্রজেক্ট", "কাজ"],
                     answer: "I've worked on various web applications and mobile apps. You can view my portfolio at sharif-portfolio.com."
                 },
                 {
-                    keywords: ["favorite", "like", "?????", "???? ????"],
+                    keywords: ["favorite", "like", "পছন্দ", "ভালো লাগে"],
                     answer: "My favorite programming language is JavaScript because of its versatility and large community."
                 }
             ];
