@@ -18,13 +18,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
+            overflow: hidden; /* Prevent any scrollbar on the body */
         }
         
         .chat-container {
             width: 100%;
             max-width: 360px;
-            height: 700px;
+            height: 90vh; /* Use viewport height instead of fixed pixels */
+            max-height: 700px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -40,6 +43,7 @@
             display: flex;
             align-items: center;
             border-bottom: 1px solid #ddd;
+            flex-shrink: 0; /* Prevent header from shrinking */
         }
         
         .bot-avatar {
@@ -53,6 +57,7 @@
             margin-right: 15px;
             font-weight: bold;
             color: #4a6fa5;
+            flex-shrink: 0; /* Prevent avatar from shrinking */
         }
         
         .chat-messages {
@@ -62,6 +67,14 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            /* Hide scrollbar while maintaining functionality */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .chat-messages::-webkit-scrollbar {
+            display: none;
         }
         
         .message {
@@ -89,6 +102,7 @@
             padding: 15px;
             border-top: 1px solid #eee;
             display: flex;
+            flex-shrink: 0; /* Prevent input container from shrinking */
         }
         
         .chat-input {
@@ -131,6 +145,7 @@
             align-items: center;
             justify-content: center;
             transition: background 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            flex-shrink: 0; /* Prevent button from shrinking */
         }
         
         .send-button:hover {
@@ -272,9 +287,14 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             /* Tablet styles */
+            body {
+                padding: 0;
+            }
+            
             .chat-container {
                 max-width: 500px;
-                height: 600px;
+                height: 85vh;
+                max-height: 600px;
             }
             
             .chat-messages {
@@ -319,7 +339,7 @@
         @media (max-width: 480px) {
             /* Mobile styles */
             body {
-                padding: 10px;
+                padding: 0;
             }
             
             .chat-container {
@@ -388,9 +408,14 @@
         
         @media (min-width: 769px) and (max-width: 1024px) {
             /* Small laptop styles */
+            body {
+                padding: 0;
+            }
+            
             .chat-container {
                 max-width: 600px;
-                height: 650px;
+                height: 80vh;
+                max-height: 650px;
             }
             
             .message {
@@ -409,9 +434,14 @@
         
         @media (min-width: 1025px) {
             /* Desktop styles */
+            body {
+                padding: 0;
+            }
+            
             .chat-container {
                 max-width: 700px;
-                height: 700px;
+                height: 85vh;
+                max-height: 700px;
             }
             
             .message {
@@ -566,7 +596,12 @@
                 messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
                 messageElement.textContent = message;
                 chatMessages.appendChild(messageElement);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Smooth scroll to bottom without showing scrollbar
+                chatMessages.scrollTo({
+                    top: chatMessages.scrollHeight,
+                    behavior: 'smooth'
+                });
             }
             
             // Function to show typing indicator
@@ -574,7 +609,12 @@
                 // Move typing indicator to the chat messages container
                 chatMessages.appendChild(typingIndicator);
                 typingIndicator.style.display = 'flex';
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Smooth scroll to bottom without showing scrollbar
+                chatMessages.scrollTo({
+                    top: chatMessages.scrollHeight,
+                    behavior: 'smooth'
+                });
             }
             
             // Function to hide typing indicator
