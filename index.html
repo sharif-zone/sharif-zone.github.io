@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sharif Chatbot</title>
     <style>
+        :root{
+            --third: rgba(230,57,70,0.15); /* #E63946 at 15% */
+            --third-solid: #E63946;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -20,37 +25,47 @@
             align-items: center;
         }
         
-        .chat-container {
+  .chat-container {
             width: 350px;
             height: 80%;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            /* subtle accent shadow + main shadow */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16), 0 2px 8px var(--third);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-        }
+            border: 1px solid rgba(0,0,0,0.04);
         
-        .chat-header {
-            background: #333333;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid #ddd;
-        }
+     .chat-header {
+    background: #000; /* full black header background */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--third);
         
-        .bot-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-weight: bold;
-            color: #4a6fa5;
+
+}
+
+.bot-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;       /* white circle */
+    color: #000;            /* black "S" letter */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6); /* black inset shadow */
+    /* no hover or active effect */
+}
+
+
+
         }
         
         .chat-messages {
@@ -77,7 +92,7 @@
         }
         
         .bot-message {
-            /* Removed background color */
+            background: var(--third); /* 15% third color used for bot messages */
             color: #333;
             align-self: flex-start;
             border-bottom-left-radius: 5px;
@@ -85,7 +100,7 @@
         
         .chat-input-container {
             padding: 15px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid rgba(0,0,0,0.03);
             display: flex;
         }
         
@@ -112,9 +127,9 @@
         }
         
         .chat-input:focus {
-            /* Focus state - maintain float appearance */
+            /* Focus state - maintain float appearance + third color focus ring */
             transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3), 0 0 0 6px var(--third);
             background-color: #ffffff;
             border-color: #111111;
         }
@@ -132,6 +147,7 @@
             align-items: center;
             justify-content: center;
             transition: background 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
         }
         
         .send-button:hover {
@@ -139,8 +155,17 @@
         }
         
         .send-button:active {
-    transform: scale(0.44);
-    background-color:#ffffff;
+            transform: scale(0.44);
+            background-color: #ffffff;
+            /* small accent ring on active to keep third color visible */
+            box-shadow: 0 0 0 4px var(--third);
+        }
+
+        .send-button svg {
+            stroke: white;
+        }
+        .send-button:active svg {
+            stroke: var(--third-solid);
         }
         
         .typing-indicator {
@@ -149,7 +174,7 @@
             margin-bottom: 15px;
             padding: 12px 15px;
             border-radius: 18px;
-            /* Removed background color */
+            background: var(--third); /* subtle third color for typing */
             border-bottom-left-radius: 5px;
             max-width: 80%;
             position: relative;
@@ -165,7 +190,7 @@
             height: 0;
             border-top: 10px solid transparent;
             border-bottom: 10px solid transparent;
-            border-left: 10px solid transparent; /* Changed to transparent */
+            border-left: 10px solid transparent;
         }
         
         .typing-indicator span {
@@ -198,6 +223,8 @@
         /* Animation for vanishing the initial message */
         .initial-message {
             transition: all 0.5s ease;
+            background: var(--third); /* initial message gets subtle third color too */
+            color: #333;
         }
         
         .vanish {
@@ -233,7 +260,7 @@
                 placeholder="Ask anything about Sharif"
                 autocomplete="off"
             >
-            <button class="send-button" id="sendButton">
+            <button class="send-button" id="sendButton" aria-label="Send">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="22" y1="2" x2="11" y2="13"></line>
                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
